@@ -14,42 +14,44 @@ class WelcomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        //WELCOME TEXT
-        const Padding(
-          padding: EdgeInsets.only(left: 12.0, top: 5.0),
-          child: Text(
-            "Welcome\nLetitia",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        children: [
+          //WELCOME TEXT
+          const Padding(
+            padding: EdgeInsets.only(left: 12.0, top: 5.0),
+            child: Text(
+              "Welcome\nLetitia",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
           ),
-        ),
-        //SEARCH & FILTER ROW
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            //the search box
-            Expanded(child: searchBox()),
-            //the filter icon
-            iconsContainer(
-                FontAwesomeIcons.filter, CustomTheme.appTheme.primaryColor, 18),
-          ],
-        ),
-        gapHeight(30),
-        //VIDEO BOX
-        videoBox(context),
-        gapHeight(20),
-        //Liste of product categories
-        productCategories(context),
-        gapHeight(20),
-        //Horizontal Products List
-        productBox(context),
-      ],
+          //SEARCH & FILTER ROW
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              //the search box
+              Expanded(child: searchBox()),
+              //the filter icon
+              iconsContainer(FontAwesomeIcons.filter,
+                  CustomTheme.appTheme.primaryColor, 18),
+            ],
+          ),
+          gapHeight(30),
+          //VIDEO BOX
+          const VideoBox(),
+          gapHeight(20),
+          //Liste of product categories
+          productCategories(context),
+          gapHeight(20),
+          //Horizontal Products List
+          productBox(context),
+        ],
+      ),
     );
   }
 }

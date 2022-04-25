@@ -1,54 +1,7 @@
 import 'package:fashionapp/theme/custom_theme.dart';
 import 'package:flutter/material.dart';
 
-class ProductsList extends StatelessWidget {
-  const ProductsList({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: <Widget>[
-          ProductBox(
-            image: "assets/images/image_1.png",
-            title: "Samantha",
-            price: 440,
-            press: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => DetailsScreen(),
-              //   ),
-              // );
-            },
-          ),
-          ProductBox(
-            image: "assets/images/image_1.png",
-            title: "Angelica",
-            price: 440,
-            press: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => DetailsScreen(),
-              //   ),
-              // );
-            },
-          ),
-          ProductBox(
-            image: "assets/images/image_1.png",
-            title: "Samantha",
-            price: 440,
-            press: () {},
-          ),
-        ],
-      ),
-    );
-  }
-}
+import '../../Product Detail Screen/productScreen.dart';
 
 class ProductBox extends StatelessWidget {
   const ProductBox({
@@ -56,39 +9,44 @@ class ProductBox extends StatelessWidget {
     required this.image,
     required this.title,
     required this.price,
-    required this.press,
   }) : super(key: key);
 
   final String image, title;
   final int price;
-  final press;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.only(
-        left: 20,
-        top: 10,
-        bottom: 50,
-      ),
-      width: size.width * 0.4,
-      child: Column(
-        children: <Widget>[
-          Image.asset(image),
-          GestureDetector(
-            onTap: press,
-            child: Container(
-              padding: EdgeInsets.all(20 / 2),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProductDetailScreen(),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+          left: 20,
+          top: 10,
+          bottom: 50,
+        ),
+        width: size.width * 0.35,
+        child: Column(
+          children: <Widget>[
+            Image.asset(image),
+            Container(
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.teal.withOpacity(0.25),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(10),
                   bottomRight: Radius.circular(10),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    offset: Offset(0, 10),
+                    offset: const Offset(0, 10),
                     blurRadius: 50,
                     color: CustomTheme.appTheme.primaryColor.withOpacity(0.23),
                   ),
@@ -103,25 +61,20 @@ class ProductBox extends StatelessWidget {
                             text: "$title\n".toUpperCase(),
                             style: Theme.of(context).textTheme.button),
                         TextSpan(
-                          text: "$price".toUpperCase(),
+                          text: "\$$price".toUpperCase(),
                           style: TextStyle(
-                            color: CustomTheme.appTheme.primaryColor
-                                .withOpacity(0.5),
+                            fontWeight: FontWeight.bold,
+                            color: CustomTheme.appTheme.shadowColor,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Spacer(),
-                  Text(
-                    '\$$price',
-                    style: TextStyle(color: CustomTheme.appTheme.primaryColor),
-                  )
                 ],
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

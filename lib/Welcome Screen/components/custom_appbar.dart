@@ -8,23 +8,18 @@ const String assetName = 'assets/icons/menu.svg';
 AppBar customAppBar() {
   return AppBar(
     elevation: 0,
-    leading: const Padding(
-      padding: EdgeInsets.only(
-        left: 10,
+    leading: Padding(
+      padding: const EdgeInsets.only(
+        left: 20,
       ),
-      child: Icon(
-        Icons.menu,
-        color: AppColors.swatch_4,
-        size: 40,
+      child: SvgPicture.asset(
+        assetName,
+        color: CustomTheme.appTheme.shadowColor,
+        semanticsLabel: 'A custom menu icon',
+        width: 20,
+        height: 5,
       ),
     ),
-    // SvgPicture.asset(
-    //   assetName,
-    //   color: CustomTheme.appTheme.shadowColor,
-    //   semanticsLabel: 'A custom menu icon',
-    //   width: 20,
-    //   height: 5,
-    // ),
     actions: const [
       Padding(
         padding: EdgeInsets.only(
